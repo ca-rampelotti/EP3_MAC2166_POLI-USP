@@ -23,15 +23,14 @@ def desvpad(x):
     med= media(x)
     soma = 0
     for i in range (len(x)):
-        soma = ((x[i]-med)**2) + soma #somatoria dos quadradros das diferenças entre o termo e media
-    n = len (x) #números de termos da sequencia menos 1
-    coef = 1 / (n-1)  #coeficiente de multiplicação da somatória
+        soma = ((x[i]-med)**2) + soma 
+    n = len (x) 
+    coef = 1 / (n-1)  
     result = (coef * soma)**0.5
     return result
 
 
 # recebe duas listas x e y e devolve o coeficiente de correlação de Pearson entre x e y.
-# Você deve usar as funções cov e desvpad aqui.
 def pearson(x,y):
     desvx = desvpad(x)
     desvy = desvpad(y)
@@ -41,15 +40,6 @@ def pearson(x,y):
     return coef
 
 # recebe uma lista x e devolve o fractional ranking de x.
-# Para o cálculo do posto, utilize o algoritmo de ordenação visto em aula.
-# O posto de cada valor v distinto no vetor X é a média de suas 
-# posições (iniciando no 1) na lista ordenada.
-# Exemplo: [1.0, 1.0, 2.0, 3.0, 3.0, 4.0, 5.0, 5.0, 5.0]  (deve estar ordenado)
-# * 1.0 -> (1+2)/2 = 1.5
-# * 2.0 -> 3
-# * 3.0 -> (4+5)/2 = 4.5
-# * 4.0 -> 6
-# * 5.0 -> (7+8+9)/3 = 8.0
 def posto(x):
     postos_iniciais = []
     for i in range (len(x)):
@@ -71,8 +61,8 @@ def posto(x):
         postos_iguais = []
         for j in range(len(x)):
             if x[i] == x[j]:
-                postos_iguais.append(j) #achei, na lista ordenada, quais são os termos que se repetem e gravei seus indices em uma lista
-        med = media(postos_iguais)#media dos indices (em ordem crescente) dos elementos que são iguais
+                postos_iguais.append(j) 
+        med = media(postos_iguais)
         for k in range (len(postos_iguais)):
            for c in range (len(postos_iniciais1)):
                 if x[postos_iguais[k]] == postos_iniciais1[c] and postos_iniciais1[c] == postos_iniciais[c]:#
@@ -82,7 +72,6 @@ def posto(x):
     return postos_iniciais1
 
 # recebe duas listas x e y de devolve o coeficiente de correlação de Spearman entre x e y.
-# Você deve usar a função Pearson aqui.
 def spearman(x, y):
     def ordenador_crescente_de_seq (seq):
         for i in range (len(seq)):
@@ -138,10 +127,6 @@ def matriz_correlacao(nome_arquivo, tipo_corr):
     return matriz_corr
 
 
-# -----------------------------------------------------
-# funções auxiliares prontas - Não devem ser alteradas
-# -----------------------------------------------------
-
 def imprime_lista(L):
     for elem in L:
         print("%.4f"%elem,end=" ")
@@ -155,9 +140,7 @@ def imprime_matriz(M):
             print("%14.4f"%(M[i][j]), end=" ")
         print()
 
-# ------------------------------------------
-# função principal - Não deve ser alterada
-# ------------------------------------------
+
 def main():
     modo = int(input("Digite o modo do programa: "))
     if modo == 1:
@@ -215,6 +198,5 @@ def main():
         imprime_matriz(M)
 
         
-#Não altere o código abaixo:
 if __name__ == "__main__":
 	main()
